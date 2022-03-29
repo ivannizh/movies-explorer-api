@@ -62,17 +62,19 @@ function login(req, res, next) {
       if (!matched) {
         return Promise.reject(new Error('Неправильные почта или пароль'));
       }
+
+      const { NODE_ENV, JWT_SECRET } = process.env;
       const token = jwt.sign(
         { _id: user._id },
-        'some-secret-key',
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
       res.cookie('jwt', token, {
         maxAge: 3600000,
         httpOnly: true,
-        // secure: true,
-        // sameSite: 'none',
-        // domain: '.ivannizh.nomoredomains.work',
+        secure: true,
+        sameSite: 'none',
+        domain: '.ivan-diploma.nomoredomains.work',
       });
       res.status(200).send({ message: 'success' });
       return Promise.resolve();

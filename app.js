@@ -13,6 +13,7 @@ const {
   loginData,
 } = require('./middlewares/validatons');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+require('dotenv').config();
 
 const NotFoundError = require('./errors/not-found-error');
 
