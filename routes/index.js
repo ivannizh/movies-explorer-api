@@ -6,4 +6,4 @@ const router = require('express').Router();
 router.use('/users', routerUser);
 router.use('/movies', routerMovie);
 
-module.exports = { router }
+module.exports = { router };
