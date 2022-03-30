@@ -1,9 +1,6 @@
-const routerUser = require('./users');
-const routerMovie = require('./movies');
-// eslint-disable-next-line import/order
-const router = require('express').Router();
+const routes = require('express').Router();
 
-router.use('/users', routerUser);
-router.use('/movies', routerMovie);
+routes.use(require('./users'));
+routes.use(require('./movies'));
 
-module.exports = { router };
+module.exports = { routes };

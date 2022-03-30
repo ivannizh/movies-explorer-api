@@ -1,7 +1,7 @@
 {
   "name": "movies-explorer-api",
   "version": "1.0.0",
-  "description": "[![Tests](https://github.com/ivannizh/movies-explorer-api/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/ivannizh/movies-explorer-api/actions/workflows/tests-13-sprint.yml) [![Tests](https://github.com/yandex-praktikum/movies-explorer-api/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/yandex-praktikum/movies-explorer-api/actions/workflows/tests-14-sprint.yml) # Проект Mesto фронтенд + бэкенд",
+  "description": "This is study project for Yandex.Praktikum course of WEB developer",
   "main": "app.js",
   "scripts": {
     "lint": "npx eslint .",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/ivannizh/movies-explorer-api.git"
   },
-  "author": "",
+  "author": "Ivan N",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ivannizh/movies-explorer-api/issues"

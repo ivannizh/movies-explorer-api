@@ -9,9 +9,11 @@ function auth(req, res, next) {
     return;
   }
 
+  const { NODE_ENV, JWT_SECRET } = process.env;
+
   let payload;
   try {
-    payload = jwt.verify(authorization, 'some-secret-key');
+    payload = jwt.verify(authorization, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
   } catch (err) {
     if (err.name === 'JsonWebTokenError') {
       next(new UnauthorizedRequestError('Необходима авторизация'));

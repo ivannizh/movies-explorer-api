@@ -23,7 +23,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    type: String,
+    type: mongoose.SchemaTypes.Url,
     required: true,
   },
   trailerLink: {
@@ -39,7 +39,7 @@ const movieSchema = new mongoose.Schema({
     ref: 'user',
   },
   movieId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Number,
     required: true,
   },
   nameRU: {

@@ -4,7 +4,7 @@ const {
   updateUserData,
 } = require('../middlewares/validatons');
 
-routerUser.get('/me', getMe);
-routerUser.patch('/me', updateUserData, updateUser);
+routerUser.get('/api/users/me/', getMe);
+routerUser.patch('/api/users/me/', updateUserData, updateUser);
 
 module.exports = routerUser;

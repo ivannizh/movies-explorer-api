@@ -3,10 +3,11 @@ const { ObjectId } = require('mongoose').Types;
 const validator = require('validator');
 
 const bodyValidation = {
-  name: Joi.string().min(2).max(30).messages({
-    'string.min': 'Минимальная длина поля "name" - 2',
-    'string.max': 'Максимальная длина поля "name" - 30',
-  }),
+  name: Joi.string().required().min(2).max(30)
+    .messages({
+      'string.min': 'Минимальная длина поля "name" - 2',
+      'string.max': 'Максимальная длина поля "name" - 30',
+    }),
   email: Joi.string().required().custom((value, helpers) => {
     if (validator.isEmail(value)) {
       return value;
@@ -45,13 +46,23 @@ const createMovieData = celebrate({
 
     country: Joi.string().required(),
     director: Joi.string().required(),
-    duration: Joi.string().required(),
+    duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required(),
-    trailer: Joi.string().required(),
-    thumbnail: Joi.string().required(),
-    movieId: Joi.string().required(),
+    image: Joi.string().required().custom((value, helpers) => {
+      if (validator.isURL(value)) {
+        return value;
+      }
+      return helpers.message('Невалидный url');
+    }),
+    trailerLink: Joi.string().required(),
+    thumbnail: Joi.string().required().custom((value, helpers) => {
+      if (validator.isURL(value)) {
+        return value;
+      }
+      return helpers.message('Невалидный url');
+    }),
+    movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
   }),

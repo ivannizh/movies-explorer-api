@@ -16,7 +16,7 @@ function getMovies(req, res, next) {
 function createMovie(req, res, next) {
   const {
     country, director, duration, year, description,
-    image, trailer: trailerLink, thumbnail, movieId, nameRU, nameEN,
+    image, trailerLink, thumbnail, movieId, nameRU, nameEN,
   } = req.body;
 
   Movie.create({
@@ -49,10 +49,7 @@ function deleteMovie(req, res, next) {
       if (movie.owner.equals(req.user._id)) {
         Movie.findByIdAndDelete(req.params.movieId).then(() => {
           res.status(200).send({ message: 'deleted' });
-          return Promise.resolve();
-        }).catch((err) => {
-          next(err);
-        });
+        }).catch(next);
       } else {
         next(new ForbiddenError('User is not owner'));
       }
